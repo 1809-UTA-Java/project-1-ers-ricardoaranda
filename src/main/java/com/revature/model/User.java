@@ -1,13 +1,29 @@
 package com.revature.model;
 
 public abstract class User {
-	int id;
-	String username;
-	String password;
-	String firstname;
-	String lastname;
-	String email;
+	protected int id;
+	protected String username;
+	protected String password;
+	protected String firstname;
+	protected String lastname;
+	protected String email;
+	
+	public abstract boolean login();
+	public abstract boolean logout();
+	public abstract void viewHomePage();
+	public abstract void viewAccountInfo();
+	public abstract void editAccountInfo();
+	
 
+	public User() {
+		id = 0;
+		username = "";
+		password = "";
+		firstname = "";
+		lastname = "";
+		email = "";
+	}
+	
 	public User(int id, String username, String password, String firstname, String lastname, String email) {
 		super();
 		this.id = id;
