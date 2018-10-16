@@ -1,11 +1,11 @@
 CREATE TABLE ERS_USERS (
-    u_id number primary key not null,
-    u_username varchar2(40) unique not null,
-    u_password varchar2(40) not null,
+    u_id varchar2(40) primary key,
+    u_username varchar2(40),
+    u_password varchar2(40),
     u_firstname varchar2(40),
     u_lastname varchar2(40),
-    u_email varchar2(40) unique,
-    ur_id number
+    u_email varchar2(40),
+    ur_id varchar2(40)
 );
 
 CREATE TABLE ERS_USER_ROLES (

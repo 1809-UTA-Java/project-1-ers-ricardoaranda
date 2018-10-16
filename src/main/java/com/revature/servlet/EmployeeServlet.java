@@ -26,11 +26,10 @@ public class EmployeeServlet extends HttpServlet {
 //		PrintWriter pw = response.getWriter();
 //		User user = (User) request.getAttribute("user");
 		
-//		pw.println(session.getId());
-//		pw.println("Welcome " + user.getFirstname());
-		response.sendRedirect("home");
+//		response.sendRedirect("home");
+		request.getRequestDispatcher("home").forward(request, response);
 		
-		session.invalidate();
+//		session.invalidate();
 	}
 
 }

@@ -2,6 +2,11 @@ package com.revature.model;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="ERS_REIMBURSEMENTS")
 public class Reimbursements {
 	public enum ReimbursementType {
 		TRAVEL, SUPPLIES, MISCELLANIOUS

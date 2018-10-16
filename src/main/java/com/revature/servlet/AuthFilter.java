@@ -26,7 +26,7 @@ public class AuthFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		PrintWriter pw = response.getWriter();
-		User dummy = new Employee("0", "caco", "asdf", "Ricardo", "Aranda", "email@gmail.com");
+		User dummy = new Employee("0", "caco", "asdf", "Ricardo", "Aranda", "email@gmail.com", "employee");
 		
 		String username = request.getParameter("name");
 		String password = request.getParameter("password");

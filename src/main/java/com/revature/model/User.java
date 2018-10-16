@@ -1,25 +1,51 @@
 package com.revature.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
+
+//@Entity
+//@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public abstract class User {
+	@Id
+	@Column(name = "u_id")
 	protected String id;
+
+	@Column(name = "u_username")
 	protected String username;
+
+	@Column(name = "u_password")
 	protected String password;
+
+	@Column(name = "u_firstname")
 	protected String firstname;
+
+	@Column(name = "u_lastname")
 	protected String lastname;
+
+	@Column(name = "u_email")
 	protected String email;
-	
+
+	@Column(name = "ur_id")
+	protected String role;
+
 	public abstract boolean login();
 	public abstract boolean logout();
 	public abstract void viewHomePage();
 	public abstract void viewAccountInfo();
 	public abstract void editAccountInfo();
-	
 
 	public User() {
-		
+
 	}
-	
-	public User(String id, String username, String password, String firstname, String lastname, String email) {
+
+	public User(String id, String username, String password, String firstname, String lastname, String email,
+			String role) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -27,6 +53,7 @@ public abstract class User {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
+		this.role = role;
 	}
 
 	public String getId() {
@@ -75,6 +102,14 @@ public abstract class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 }
