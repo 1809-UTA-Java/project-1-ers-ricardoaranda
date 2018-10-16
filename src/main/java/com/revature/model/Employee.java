@@ -6,7 +6,7 @@ public class Employee extends User {
 		super();
 	}
 
-	public Employee(int id, String username, String password, String firstname, String lastname, String email) {
+	public Employee(String id, String username, String password, String firstname, String lastname, String email) {
 		super(id, username, password, firstname, lastname, email);
 	}
 

@@ -11,6 +11,7 @@ public class Reimbursements {
 		APPROVED, DENIED
 	}
 
+	// change id to String type
 	private int id;
 	private int ammount;
 	private String description;
@@ -21,6 +22,10 @@ public class Reimbursements {
 	private int resolverId;
 	private ReimbursementType type;
 	private ReimbursementStatus status;
+
+	public Reimbursements() {
+
+	}
 
 	public Reimbursements(int id, int ammount, String description, byte[] receipt, Timestamp submitted,
 			Timestamp resolved, int authorId, int resolverId, ReimbursementType type, ReimbursementStatus status) {

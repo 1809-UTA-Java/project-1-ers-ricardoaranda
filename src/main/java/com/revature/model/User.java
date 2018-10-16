@@ -1,7 +1,7 @@
 package com.revature.model;
 
 public abstract class User {
-	protected int id;
+	protected String id;
 	protected String username;
 	protected String password;
 	protected String firstname;
@@ -16,15 +16,10 @@ public abstract class User {
 	
 
 	public User() {
-		id = 0;
-		username = "";
-		password = "";
-		firstname = "";
-		lastname = "";
-		email = "";
+		
 	}
 	
-	public User(int id, String username, String password, String firstname, String lastname, String email) {
+	public User(String id, String username, String password, String firstname, String lastname, String email) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -34,11 +29,11 @@ public abstract class User {
 		this.email = email;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
