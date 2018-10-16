@@ -33,7 +33,13 @@ public class IndexServlet extends HttpServlet {
 		
 		// TEST
 		UserDao udao = new UserDao();
-		udao.saveUser(user);
+//		udao.saveUser(user);
+		
+//		List<User> list = udao.getUsers();
+//		pw.println("Email : " + list.get(0).getEmail());
+		
+		user = udao.getUserByName("caco");
+		pw.println("From DB : " + user.getEmail());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

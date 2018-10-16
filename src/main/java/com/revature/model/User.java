@@ -31,7 +31,7 @@ public abstract class User {
 	@Column(name = "u_email")
 	protected String email;
 
-	@Column(name = "ur_id")
+	@Column(name = "u_role")
 	protected String role;
 
 	public abstract boolean login();

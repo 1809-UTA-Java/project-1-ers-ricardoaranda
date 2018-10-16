@@ -13,7 +13,7 @@ public class UserDao {
 	@SuppressWarnings("unchecked")
 	public List<User> getUsers() {
 		Session session = HibernateUtil.getSession();
-		return session.createQuery("from User").list();
+		return session.createQuery("from Employee").list();
 	}
 	
 	public User getUserByName(String aName) {
@@ -22,13 +22,13 @@ public class UserDao {
 		List<User> users = new ArrayList<>();
 		
 		users = session.createQuery(
-				"from User where name = :nameVar")
+				"from Employee where username = :nameVar")
 				.setString("nameVar", aName).list();
 		if(!users.isEmpty()) {
 			found = users.get(0);
 		}
 		
-		session.getTransaction().commit();
+		//session.getTransaction().commit();
 		return found;
 	}
 	

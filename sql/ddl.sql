@@ -1,17 +1,17 @@
 CREATE TABLE ERS_USERS (
     u_id varchar2(40) primary key,
-    u_username varchar2(40),
-    u_password varchar2(40),
+    u_username varchar2(40) unique not null,
+    u_password varchar2(40) unique not null,
     u_firstname varchar2(40),
     u_lastname varchar2(40),
-    u_email varchar2(40),
-    ur_id varchar2(40)
+    u_email varchar2(40) unique,
+    u_role varchar2(40)
 );
 
-CREATE TABLE ERS_USER_ROLES (
-    ur_id number primary key not null,
-    ur_role varchar2(40)
-);
+--CREATE TABLE ERS_USER_ROLES (
+--    ur_id number primary key not null,
+--    ur_role varchar2(40)
+--);
 
 CREATE TABLE ERS_REINBURSEMENTS (
     r_id number primary key not null,
@@ -26,15 +26,15 @@ CREATE TABLE ERS_REINBURSEMENTS (
     rs_id number not null
 );
 
-CREATE TABLE ERS_REIMBURSEMENT_STATUS (
-    rs_id number primary key,
-    rs_status varchar2(30) not null
-);
-
-CREATE TABLE ERS_REINBURSEMENT_TYPE (
-    rt_id number primary key,
-    rt_type varchar(30) not null
-);
+--CREATE TABLE ERS_REIMBURSEMENT_STATUS (
+--    rs_id number primary key,
+--    rs_status varchar2(30) not null
+--);
+--
+--CREATE TABLE ERS_REINBURSEMENT_TYPE (
+--    rt_id number primary key,
+--    rt_type varchar(30) not null
+--);
 
 ALTER TABLE ERS_USERS ADD CONSTRAINT FKUserRoles
 FOREIGN KEY (ur_id) REFERENCES ERS_USER_ROLES (ur_id)
