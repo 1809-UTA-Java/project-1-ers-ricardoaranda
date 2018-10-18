@@ -6,23 +6,23 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.revature.model.Employee;
 import com.revature.model.User;
 import com.revature.util.HibernateUtil;
 
-public class UserDao {
+public class EmployeeDao {
 	@SuppressWarnings("unchecked")
-	public List<User> getUsers() {
+	public List<User> getEmployees() {
 		Session session = HibernateUtil.getSession();
 		return session.createQuery("from Employee").list();
 	}
 	
-	@SuppressWarnings("unchecked")
-	public User getUserByName(String aName) {
+	public User getEmployeesByName(String aName) {
 		Session session = HibernateUtil.getSession();
 		User found = null;
 		List<User> users = new ArrayList<>();
 		
-		users = (List<User>) session.createQuery(
+		users = session.createQuery(
 				"from Employee where username = :nameVar")
 				.setString("nameVar", aName).list();
 		if(!users.isEmpty()) {
@@ -33,10 +33,10 @@ public class UserDao {
 		return found;
 	}
 	
-	public void saveUser(User newUser) {
+	public void saveEmployee(Employee newEmployee) {
 		Session session = HibernateUtil.getSession();
 		Transaction tx = session.beginTransaction();
-		session.save(newUser);
+		session.save(newEmployee);
 		tx.commit();
 	}
 }
