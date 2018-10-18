@@ -34,22 +34,18 @@ public class ReimbursementServlet extends HttpServlet {
 		ReimbursementDao rdao = new ReimbursementDao();
 		Timestamp time = new Timestamp(System.currentTimeMillis());
 		String reimbursementId = UUID.randomUUID().toString();
-		//
-//		HttpSession session = request.getSession();
-//		request.getRequestDispatcher("employee-homepage.html").forward(request, response);
 		
 		String amount = request.getParameter("amount");
 		String description = request.getParameter("description");
-//		Employee employee = (Employee) request.getAttribute("user");
-		EmployeeDao edao = new EmployeeDao();
-		Employee employee = (Employee) edao.getEmployeesByName("caco");
+		
+		Employee employee = (Employee) request.getSession().getAttribute("user");
 		
 		Reimbursements newReimbursement = new Reimbursements(reimbursementId, Integer.parseInt(amount), description, time, employee, "travel", "pending");
 		
 		rdao.saveReimbursement(newReimbursement);
 		
-		pw.println("Amount: " + amount + ".");
-		pw.println("Despription: " + description + ".");
+		request.getRequestDispatcher("employee-homepage.html").include(request, response);
+		pw.println("Your request was submitted");
 	}
 
 }
