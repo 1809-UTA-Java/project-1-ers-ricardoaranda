@@ -12,9 +12,8 @@ import javax.persistence.Table;
 @Table(name = "ERS_USERS")
 public class Manager extends User {
 
-	@OneToMany(cascade = CascadeType.REMOVE)
-//	@JoinColumn(name = "u_id_resolver")
-	protected Set<Reimbursements> reimbursements;
+//	@OneToMany(cascade = CascadeType.REMOVE)
+//	protected Set<Reimbursements> reimbursements;
 
 	public Manager() {
 		super();
@@ -55,12 +54,12 @@ public class Manager extends User {
 
 	}
 
-	public Set<Reimbursements> getReimbursements() {
-		return reimbursements;
-	}
-
-	public void setReimbursements(Set<Reimbursements> reimbursements) {
-		this.reimbursements = reimbursements;
-	}
+//	public Set<Reimbursements> getReimbursements() {
+//		return reimbursements;
+//	}
+//
+//	public void setReimbursements(Set<Reimbursements> reimbursements) {
+//		this.reimbursements = reimbursements;
+//	}
 
 }

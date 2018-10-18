@@ -12,9 +12,8 @@ import javax.persistence.Table;
 @Table(name = "ERS_USERS")
 public class Employee extends User {
 
-	@OneToMany(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "u_id_author")
-	protected Set<Reimbursements> reimbursements;
+//	@OneToMany(cascade = CascadeType.ALL)
+//	protected Set<Reimbursements> reimbursements;
 
 	public Employee() {
 		super();
@@ -55,12 +54,12 @@ public class Employee extends User {
 
 	}
 
-	public Set<Reimbursements> getReimbursements() {
-		return reimbursements;
-	}
-
-	public void setReimbursements(Set<Reimbursements> reimbursements) {
-		this.reimbursements = reimbursements;
-	}
+//	public Set<Reimbursements> getReimbursements() {
+//		return reimbursements;
+//	}
+//
+//	public void setReimbursements(Set<Reimbursements> reimbursements) {
+//		this.reimbursements = reimbursements;
+//	}
 
 }
