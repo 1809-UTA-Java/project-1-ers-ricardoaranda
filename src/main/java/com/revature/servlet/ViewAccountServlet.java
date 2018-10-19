@@ -31,7 +31,6 @@ public class ViewAccountServlet extends HttpServlet {
 		
 		pw.println(obj);
 		pw.close();
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

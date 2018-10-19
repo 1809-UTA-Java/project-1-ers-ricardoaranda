@@ -35,4 +35,16 @@ public class ReimbursementDao {
 		
 		return list;
 	}
+	
+	public List<Reimbursements> getPendingReimbursements() {
+		Session session = HibernateUtil.getSession();
+		List<Reimbursements> list = new ArrayList<>();
+		String hql = "from Reimbursements where status = :pending";
+		Query query = session.createQuery(hql);
+		
+		query.setParameter("pending", "pending");
+		list = query.list();
+		
+		return list;
+	}
 }
