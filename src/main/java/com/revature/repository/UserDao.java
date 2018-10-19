@@ -39,4 +39,11 @@ public class UserDao {
 		session.save(newUser);
 		tx.commit();
 	}
+	
+	public void setUser(User user) {
+		Session session = HibernateUtil.getSession();
+		Transaction tx = session.beginTransaction();
+		session.update(user);
+		tx.commit();
+	}
 }

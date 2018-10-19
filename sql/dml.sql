@@ -8,10 +8,10 @@ BEGIN
 END;
 /
 
---INSERT INTO ERS_USERS (u_username, u_password, u_firstname, u_lastname, u_email, u_role)
---VALUES ('caco', 'asdf', 'Ricardo', 'Aranda', 'email@gmail.com', 'employee');
-
 INSERT INTO ERS_USERS (u_username, u_password, u_firstname, u_lastname, u_email, u_role)
-VALUES ('manny', 'asdf', 'Jan', 'TheMan', 'janTheMan@gmail.com', 'manager');
+VALUES ('caco', 'asdf', 'Ricardo', 'Aranda', 'email@gmail.com', 'employee');
+
+--INSERT INTO ERS_USERS (u_username, u_password, u_firstname, u_lastname, u_email, u_role)
+--VALUES ('manny', 'asdf', 'Jan', 'TheMan', 'janTheMan@gmail.com', 'manager');
 
 COMMIT;

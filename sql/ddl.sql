@@ -4,7 +4,7 @@ CREATE TABLE ERS_USERS (
     u_password varchar2(40) not null,
     u_firstname varchar2(40),
     u_lastname varchar2(40),
-    u_email varchar2(40) unique,
+    u_email varchar2(40) unique not null,
     u_role varchar2(40)
 );
 
