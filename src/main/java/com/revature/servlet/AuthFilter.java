@@ -31,7 +31,6 @@ public class AuthFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		PrintWriter pw = response.getWriter();
-//		boolean userFound = true;
 		
 		String username = request.getParameter("name");
 		String password = request.getParameter("password");
@@ -45,9 +44,8 @@ public class AuthFilter implements Filter {
 			
 			request.getRequestDispatcher("employee-login.html").include(request, response);
 			pw.println("<font color='red'><b>That user does not exist.</b></font>");
-//			userFound = false;
 		}
-		else //if (userFound)
+		else
 		{
 			if (!username.equals(user.getUsername()) || !password.equals(user.getPassword())
 					|| !user.getRole().equals("employee")) {

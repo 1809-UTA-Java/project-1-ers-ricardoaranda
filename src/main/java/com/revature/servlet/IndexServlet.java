@@ -31,9 +31,9 @@ public class IndexServlet extends HttpServlet {
 		
 		rd.include(request, response);
 		
-		EmployeeDao edao = new EmployeeDao();
-		
-		pw.println("Email: " + user.getEmail());
+//		EmployeeDao edao = new EmployeeDao();
+//		
+//		pw.println("Email: " + user.getEmail());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
