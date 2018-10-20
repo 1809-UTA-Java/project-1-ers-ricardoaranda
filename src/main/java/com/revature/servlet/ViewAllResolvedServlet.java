@@ -13,17 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.revature.model.Reimbursements;
 import com.revature.repository.ReimbursementDao;
 
-@WebServlet("/ViewAllPendingServlet")
-public class ViewAllPendingServlet extends HttpServlet {
+@WebServlet("/ViewAllResolvedServlet")
+public class ViewAllResolvedServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ViewAllPendingServlet() {
+    public ViewAllResolvedServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReimbursementDao rdao = new ReimbursementDao();
-		List<Reimbursements> list = rdao.getPendingReimbursements();
+		List<Reimbursements> list = rdao.getResolvedReimbursements();
 		PrintWriter pw = response.getWriter();
 		
 		response.setContentType("text/html");

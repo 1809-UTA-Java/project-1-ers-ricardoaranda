@@ -10,7 +10,27 @@
 		<li><a href="ViewAllAccountsServlet">View all employees</a></li>
 		<li><a href="ViewAllPendingServlet">View all pending reimbursements</a></li>
 		<li><a href="ViewAllResolvedServlet">View all resolved reimbursements</a></li>
-		<li><a href="ViewReimbursementByEmployee">View reimbursements by employee</a></li>
+		<li>
+		<form action="ViewReimbursementByEmployee" method="post">
+			View reimbursements by employee: <br>
+			<input type="text" name="author">
+			<button type="submit" value="search">search</button>
+		</form>
+		</li>
+		<li>
+			<form action="ApproveReimbursement" method="post">
+			Approve reimbursement: <br>
+			<input type="text" name="reimId">
+			<button type="submit" value="approve">approve</button>
+		</form>
+		</li>
+		<li>
+			<form action="DenyReimbursement" method="post">
+			Approve reimbursement: <br>
+			<input type="text" name="reimId">
+			<button type="submit" value="deny">deny</button>
+		</form>
+		</li>
 		<li><a href="LogoutServlet">Log out</a></li>
 	</ul>
 </body>

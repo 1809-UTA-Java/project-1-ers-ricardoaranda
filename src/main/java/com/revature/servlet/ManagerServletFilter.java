@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.revature.model.Manager;
 import com.revature.model.User;
-import com.revature.repository.UserDao;
+import com.revature.repository.ManagerDao;
 
 @WebFilter("/manager")
 public class ManagerServletFilter implements Filter {
@@ -34,8 +34,10 @@ public class ManagerServletFilter implements Filter {
 		String password = req.getParameter("password");
 		
 		User user = new Manager();
-		UserDao udao = new UserDao();
-		user = udao.getUserByName(username);
+//		UserDao udao = new UserDao();
+//		user = udao.getUserByName(username);
+		ManagerDao mdao = new ManagerDao();
+		user = mdao.getUserByName(username);
 		
 		if (user == null) {
 			resp.setContentType("text/html");

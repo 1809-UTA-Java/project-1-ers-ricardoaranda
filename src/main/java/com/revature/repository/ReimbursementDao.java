@@ -47,4 +47,38 @@ public class ReimbursementDao {
 		
 		return list;
 	}
+	
+	public List<Reimbursements> getResolvedReimbursements() {
+		Session session = HibernateUtil.getSession();
+		List<Reimbursements> list = new ArrayList<>();
+		String hql = "from Reimbursements where status = :approved";
+		Query query = session.createQuery(hql);
+		
+		query.setParameter("approved", "approved");
+		list = query.list();
+		
+		return list;
+	}
+	
+	public Reimbursements getRimbursementById(String reimId) {
+		Session session = HibernateUtil.getSession();
+		Reimbursements reim = null;
+		List<Reimbursements> reimList = new ArrayList<>();
+		
+		reimList = (List<Reimbursements>) session.createQuery(
+				"from Reimbursements where id = :reimId")
+				.setString("reimId", reimId).list();
+		if (!reimList.isEmpty()) {
+			reim = reimList.get(0);
+		}
+		
+		return reim;
+	}
+	
+	public void setReimbursement(Reimbursements reim) {
+		Session session = HibernateUtil.getSession();
+		Transaction tx = session.beginTransaction();
+		session.update(reim);
+		tx.commit();
+	}
 }
