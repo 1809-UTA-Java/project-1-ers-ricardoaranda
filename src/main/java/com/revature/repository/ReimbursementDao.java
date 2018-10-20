@@ -3,9 +3,12 @@ package com.revature.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.Restrictions;
 
 import com.revature.model.Reimbursements;
 import com.revature.model.User;
@@ -49,15 +52,23 @@ public class ReimbursementDao {
 	}
 	
 	public List<Reimbursements> getResolvedReimbursements() {
+//		Session session = HibernateUtil.getSession();
+//		List<Reimbursements> list = new ArrayList<>();
+//		String hql = "from Reimbursements where status = :approved";
+//		Query query = session.createQuery(hql);
+//		
+//		query.setParameter("approved", "approved");
+//		list = query.list();
+//		
+//		return list;
 		Session session = HibernateUtil.getSession();
-		List<Reimbursements> list = new ArrayList<>();
-		String hql = "from Reimbursements where status = :approved";
-		Query query = session.createQuery(hql);
+		Criteria criteria = session.createCriteria(Reimbursements.class);
+		Disjunction or = Restrictions.disjunction();
+		or.add(Restrictions.eq("status", "approved"));
+		or.add(Restrictions.eq("status", "denied"));
+		criteria.add(or);
 		
-		query.setParameter("approved", "approved");
-		list = query.list();
-		
-		return list;
+		return criteria.list();
 	}
 	
 	public Reimbursements getRimbursementById(String reimId) {
