@@ -1,7 +1,13 @@
 package com.revature.repository;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -91,5 +97,29 @@ public class ReimbursementDao {
 		Transaction tx = session.beginTransaction();
 		session.update(reim);
 		tx.commit();
+	}
+	
+	public void findReceipt(Reimbursements reim, File file) throws IOException {
+		Session session = HibernateUtil.getSession();
+		List<Reimbursements> reimList = new ArrayList<>();
+		
+		reimList = (List<Reimbursements>) session.createQuery(
+				"from Reimbursements where id = :reimId")
+				.setString("reimId", reim.getId()).list();
+		if (!reimList.isEmpty()) {
+			reim = reimList.get(0);
+		}
+		
+		byte[] image = reim.getReceipt();
+		if (image != null) {
+			ByteArrayInputStream inputStream = new ByteArrayInputStream(image);
+			BufferedImage receipt = ImageIO.read(inputStream); // throws
+			
+			ImageIO.write(receipt, "jpg", file);
+			
+			inputStream.close();
+		}
+		
+		
 	}
 }

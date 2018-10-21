@@ -1,5 +1,6 @@
 package com.revature.servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -25,29 +26,61 @@ public class ViewReimbursementsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReimbursementDao rdao = new ReimbursementDao();
 		User author = (User) request.getSession().getAttribute("user");
-		System.out.println(author);
 		List<Reimbursements> list = rdao.getReimbursementsByAuthor(author);
-		PrintWriter pw = response.getWriter();
 		
+		PrintWriter pw = response.getWriter();
+		String filePath = "/home/developer/Workspace/project-1-ers-ricardoaranda/src/main/webapp/receipt.jpg";
+		File file = new File(filePath);
 		response.setContentType("text/html");
 		
 		for (int i = 0; i < list.size(); i++) {
-			pw.println( "<!DOCTYPE html>\n" +
-					"<html>\n" +
-					"<head>\n" +
-						"<meta charset=\"UTF-8\">\n" +
-						"<title>Reimbursements</title>\n" +
-					"</head>\n" + 
-					"<body>\n" +
-						"<ul><b>Transaction number " + (i+1) + "</b>\n" +
-							"<li><b>Description: </b>" + list.get(i).getDescription() +"</li>" +
-							"<li><b>Amount: </b>" + list.get(i).getAmmount() + "</li>" +
-							"<li><b>Timestamp: </b>" + list.get(i).getSubmitted() + "</li>" +
-							"<li><b>Status: </b>" + list.get(i).getStatus() + "</li>" +
-						"</ul>\n" +
-					"</body>\n" +
-					"</html>\n"
-			);
+//			if (file.exists()) {
+//				file.delete();
+//				file = new File(filePath);
+//			}
+			if (list.get(i).getReceipt() != null) {
+//				file = new File(filePath);
+				rdao.findReceipt(list.get(i), file);
+				request.getSession().setAttribute("receipt", list.get(i));
+				pw.println( "<!DOCTYPE html>\n" +
+						"<html>\n" +
+						"<head>\n" +
+							"<meta charset=\"UTF-8\">\n" +
+							"<title>Reimbursements</title>\n" +
+						"</head>\n" + 
+						"<body>\n" +
+							"<ul><b>Transaction number " + (i+1) + "</b>\n" +
+								"<li><b>Description: </b>" + list.get(i).getDescription() +"</li>" +
+								"<li><b>Amount: </b>" + list.get(i).getAmmount() + "</li>" +
+								"<li><b>Timestamp: </b>" + list.get(i).getSubmitted() + "</li>" +
+								"<li><b>Status: </b>" + list.get(i).getStatus() + "</li>" +
+//								"<img src=\"receipt.jpg\" style=\"width:500px;height:600px;\">" +
+								"<li><a href=\"FindReceiptServlet\">Click to view receipt.</a></li>" +
+							"</ul>\n" +
+						"</body>\n" +
+						"</html>\n"
+				);
+			}
+			else {
+				pw.println( "<!DOCTYPE html>\n" +
+						"<html>\n" +
+						"<head>\n" +
+							"<meta charset=\"UTF-8\">\n" +
+							"<title>Reimbursements</title>\n" +
+						"</head>\n" + 
+						"<body>\n" +
+							"<ul><b>Transaction number " + (i+1) + "</b>\n" +
+								"<li><b>Description: </b>" + list.get(i).getDescription() +"</li>" +
+								"<li><b>Amount: </b>" + list.get(i).getAmmount() + "</li>" +
+								"<li><b>Timestamp: </b>" + list.get(i).getSubmitted() + "</li>" +
+								"<li><b>Status: </b>" + list.get(i).getStatus() + "</li>" +
+								"<li><b>No receipt.</b></li>" +
+							"</ul>\n" +
+						"</body>\n" +
+						"</html>\n"
+				);
+			}
+			
 		}
 	}
 
